@@ -32,6 +32,18 @@ module.exports = yo.generators.Base.extend({
 			message: 'Would you like to use the default incubator configuration?',
 			default: true,
 			type: 'confirm'
+		}, {
+			name: 'es2015orLoose',
+			message: 'Which babel do you want to use?',
+			default: 'es2015-loose',
+			type: 'list',
+			choices: [{
+				name: 'es2015-loose',
+				value: 'es2015-loose'
+			},{
+				name: 'es2015',
+				value: 'es2015'
+			}]
 		}];
 
 		this.prompt(prompts, function (props) {
@@ -57,7 +69,7 @@ module.exports = yo.generators.Base.extend({
 				version: this.props.projectVersion
 			}
 		);
-console.log( this.settings.paths.src.root)
+
 		this.fs.copyTpl(
 			this.templatePath('_config.json'),
 			this.destinationPath('config.json'), {

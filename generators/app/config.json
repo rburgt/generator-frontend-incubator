@@ -36,6 +36,14 @@
         "root": "pattern_library"
       },
       "site": "prototype"
+    },
+
+    "buildUrl": {
+      "site": "/",
+      "css": "/asset/css",
+      "javascript": "/asset/javascript",
+      "image": "/asset/image",
+      "font": "/asset/font"
     }
   }
 }

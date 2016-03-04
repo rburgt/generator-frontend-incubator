@@ -20,29 +20,29 @@
         },
 
         "build": {
-            "root": "build",
+            "root": "<%= paths.build.root %>",
             "asset": {
-                "javascript": "build/asset/javascript",
-                "image": "build/asset/image",
-                "font": "build/asset/font",
-                "css": "build/asset/css"
+                "javascript": "<%= paths.build.root %>/<%= paths.build.asset.javascript %>",
+                "image": "<%= paths.build.root %>/<%= paths.build.asset.image %>",
+                "font": "<%= paths.build.root %>/<%= paths.build.asset.font %>",
+                "css": "<%= paths.build.root %>/<%= paths.build.asset.css %>"
             },
             "prototype": {
-                "template": "build/prototype",
-                "webroot": "build/prototype"
+                "template": "<%= paths.build.root %>/<%= paths.build.prototype.template %>",
+                "webroot": "<%= paths.build.root %>/<%= paths.build.prototype.webroot %>"
             },
             "patternLibrary": {
-                "root": "build/pattern_library"
+                "root": "<%= paths.build.root %>/<%= paths.build.patternLibrary.root %>"
             },
-            "site": "build/prototype"
+            "site": "<%= paths.build.root %>/<%= paths.build.site %>"
         },
 
         "buildUrl": {
-            "site": "/",
-            "css": "/asset/css",
-            "javascript": "/asset/javascript",
-            "image": "/asset/image",
-            "font": "/asset/font"
+            "site": "<%= paths.buildUrl.site %>",
+            "css": "<%= paths.buildUrl.site %>css",
+            "javascript": "<%= paths.buildUrl.javascript %>",
+            "image": "<%= paths.buildUrl.image %>",
+            "font": "<%= paths.buildUrl.font %>"
         }
     },
     "ftpDeploy": {
@@ -54,6 +54,6 @@
         "autoprefix": {
             "support": "last 2 versions, Explorer >= 8, Firefox >= 25"
         },
-        "es2015": "es2015-loose"
+        "es2015": "<%= paths.esVersion %>"
     }
 }

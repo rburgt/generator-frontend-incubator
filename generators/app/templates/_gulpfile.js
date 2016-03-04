@@ -1,0 +1,294 @@
+/* jshint strict: true */
+'use strict';
+
+// Include Gulp & Tools We'll Use
+let gulp = require('gulp');
+let $ = require('gulp-load-plugins')();
+let rimraf = require('rimraf');
+let runSequence = require('run-sequence');
+let browserSync = require('browser-sync');
+let through2 = require('through2');
+let browserify = require('browserify');
+let path = require('path');
+let reload = browserSync.reload;
+let yargs = require('yargs').argv;
+let minify = yargs.minify ? true : false;
+let tunnel = yargs.tunnel ? yargs.tunnel : false;
+
+let config = require('./config.json');
+
+yargs.ftpDeploy = yargs.ftpDeploy || {};
+config.ftpDeploy.host = yargs.ftpDeploy.host || '';
+config.ftpDeploy.password = yargs.ftpDeploy.password || '';
+config.ftpDeploy.username = yargs.ftpDeploy.username || '';
+
+// font url relative to css location
+config.path.buildUrl.fontCssRelative = path.relative(
+    config.path.buildUrl.css,
+    config.path.buildUrl.font
+).replace(/\\/g, '/');
+
+
+// image url relative to css location
+config.path.buildUrl.imageCssRelative = path.relative(
+    config.path.buildUrl.css,
+    config.path.buildUrl.image
+).replace(/\\/g, '/');
+
+// build all
+gulp.task('compile', (callback) => {
+    runSequence(
+        'compile:asset',
+        'compile:prototype',
+        'compile:pattern_library',
+        callback
+    );
+});
+
+// build assets
+gulp.task('compile:asset', (callback) => {
+    runSequence(
+        'compile:font',
+        'compile:image',
+        'compile:js',
+        'compile:css',
+        callback
+    );
+});
+
+gulp.task('compile:font', () => {
+    return gulp.src(config.path.src.asset.font + '/**/*')
+        .pipe($.plumber())
+        .pipe(gulp.dest(config.path.build.asset.font))
+        .pipe($.size({title: 'fonts'}));
+});
+
+
+gulp.task('compile:image', () => {
+    return gulp.src(config.path.src.asset.image + '/**/*')
+        .pipe($.plumber())
+        // optimizes image file if possible
+        .pipe($.cache($.imagemin({
+            progressive: true,
+            interlaced: true
+        })))
+        .pipe(gulp.dest(config.path.build.asset.image))
+        .pipe($.size({title: 'image'}));
+});
+
+
+gulp.task('compile:js', () => {
+    return gulp.src([config.path.src.asset.javascript + '/*.js'])
+        .pipe($.plumber())
+        // use browserify to manage dependencies
+        .pipe(through2.obj((file, enc, next) => {
+            browserify(file.path)
+                .transform('babelify', {presets: [config.preferences.es2015]})
+                .bundle((err, res) => {
+                    if (err) {
+                        throw err;
+                    }
+                    file.contents = res;
+                    next(null, file);
+                });
+        }))
+
+        // uglifies code if minification is enabled
+        .pipe($.if(minify, $.uglify()))
+
+        .pipe(gulp.dest(config.path.build.asset.javascript))
+        .pipe($.size({title: 'javascript'}));
+});
+
+
+gulp.task('compile:css', () => {
+    return gulp.src(config.path.src.asset.scss + '/*.scss')
+
+        .pipe($.sass({precision: 8}))
+
+        .on('error', (error) => {
+            console.log(error);
+        })
+
+        .pipe($.plumber())
+
+        .pipe($.ignore('**/*.css.map'))
+
+        // autoprefixes css properties
+        .pipe($.autoprefixer(config.preferences.autoprefix.support.split(', ')))
+
+        // minifies css if minify property is enabled
+        .pipe($.if(minify, $.cssnano()))
+
+        .pipe(gulp.dest(config.path.build.asset.css))
+        .pipe($.size({title: 'styles:scss'}));
+});
+
+
+// Prototoype site
+gulp.task('compile:prototype', [
+    'compile:html',
+    'compile:sample_content'
+]);
+
+gulp.task('compile:html', () => {
+    return gulp.src([
+            config.path.src.prototype.template + '/**/*.html',
+            '!' + config.path.src.prototype.template + '/component/**/*',
+            '!' + config.path.src.prototype.template + '/layout/**/*'
+        ])
+        .pipe($.plumber())
+        .pipe($.swig({
+            defaults: {
+                cache: false
+            },
+            data: {
+                config: config
+            }
+        }))
+        .pipe($.htmltidy({
+            doctype: 'html5',
+            hideComments: false,
+            'fix-bad-comments': false,
+            wrap: 0,
+            indent: true,
+            'indent-spaces': 4,
+            'drop-empty-elements': false,
+            'new-blocklevel-tags': 'main'
+        }))
+        .pipe(gulp.dest(config.path.build.prototype.template))
+        .pipe($.size({title: 'site:html'}));
+});
+
+gulp.task('compile:sample_content', () => {
+    return gulp.src(config.path.src.prototype.webroot + '/**/*')
+        .pipe($.plumber())
+        .pipe($.cache($.imagemin({
+            progressive: true,
+            interlaced: true
+        })))
+        .pipe(gulp.dest(config.path.build.prototype.webroot))
+        .pipe($.size({title: 'sample_content'}));
+});
+
+
+// Build pattern library via kss
+// Generate pattern library with templates
+gulp.task('compile:pattern_library', (callback) => {
+
+    let exec = require('child_process').exec;
+    exec(
+        'node ./node_modules/kss/bin/kss-node ' +
+        [
+            '--source=' + config.path.src.asset.scss,
+            '--destination=' + config.path.build.patternLibrary.root,
+            '--css=' + config.path.buildUrl.css + '/site.css',
+            '--js=' + config.path.buildUrl.javascript + '/site.js',
+            '--template=' + config.path.src.patternLibrary.template,
+            '--homepage=readme.md'
+        ].join(' '),
+        (error, stdout, stderr) => {
+            if (error) {
+                console.log(stdout, stderr);
+                throw error;
+            }
+            callback();
+        }
+    );
+});
+
+gulp.task('package', () => {
+    // @TODO: only optimize in this run, no more minify/uglify/imagemin in any other
+});
+
+// Analyze tasks, provide information about code quality
+gulp.task('verify', [
+    'verify:js'
+]);
+
+gulp.task('verify:js', () => {
+    gulp.src([
+            './*.js',
+            config.path.src.root + '/**/*.js',
+            '!' + config.path.src.patternLibrary.template + '/**/*',
+            '!' + config.path.src.asset.javascript + '/polyfill/*.js'
+        ])
+        .pipe($.plumber())
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish'));
+});
+
+
+// Clean Output Directories
+gulp.task('clean', (cb) => {
+    rimraf(config.path.build.root, () => {
+        $.cache.clearAll(cb);
+    });
+});
+
+
+// Watch Files For Changes & Reload
+gulp.task('serve', ['compile'], () => {
+    browserSync({
+        server: {
+            baseDir: [
+                config.path.build.root,
+                config.path.build.root + '/asset'
+            ]
+        },
+        notify: false,
+        tunnel: tunnel,
+        startPath: '/prototype'
+    });
+
+    // trigger build action per asset type on change
+    gulp.watch([config.path.src.asset.scss + '/**/*.scss'], ['compile:css']);
+    gulp.watch([config.path.src.asset.image + '/**/*'], ['compile:image']);
+    gulp.watch([config.path.src.asset.font + '/**/*'], ['compile:font']);
+    gulp.watch([config.path.src.asset.javascript + '/**/*.js'], [
+        'compile:js',
+        'verify:js' // also show if javascript plays nice with coding standards
+    ]);
+
+    //
+    gulp.watch([config.path.src.prototype.template + '/**/*'], ['compile:prototype']);
+
+    // builds pattern library on change
+    gulp.watch([
+        config.path.src.patternLibrary.root + '/**/*',
+        config.path.src.prototype.template + '/**/*',
+        config.path.src.asset.scss + '/**/*.scss'
+    ], ['compile:pattern_library']);
+
+    // when build folder changes content, reload browser
+    // has a timeout of 60 ms preventing a reload overflow
+    gulp.watch([config.path.build.root + '/**/*'], (() => {
+        let cb;
+        return () => {
+            clearTimeout(cb);
+            cb = setTimeout(() => {
+                reload();
+            }, 60);
+        };
+    })());
+});
+
+
+// Default is alias for build
+gulp.task('default', ['help']);
+
+
+gulp.task('help', function () {
+    gulp.src('./tasks.json')
+    .pipe($.list());
+});
+
+//deploy @TODO: replace by Bamboo [kre]
+gulp.task('deploy', ['clean', 'compile'], () => {
+    return gulp.src(config.path.build.root + '/**/*')
+        .pipe($.ftp({
+            host: config.ftpDeploy.host,
+            user: config.ftpDeploy.username,
+            pass: config.ftpDeploy.password
+        }));
+});

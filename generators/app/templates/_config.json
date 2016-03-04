@@ -1,0 +1,59 @@
+{
+    "path": {
+        "src": {
+            "root": "<%= paths.src.root %>",
+            "asset": {
+                "javascript": "<%= paths.src.root %>/<%= paths.src.asset.javascript %>",
+                "image": "<%= paths.src.root %>/<%= paths.src.asset.image %>",
+                "font": "<%= paths.src.root %>/<%= paths.src.asset.font %>",
+                "scss": "<%= paths.src.root %>/<%= paths.src.asset.scss %>"
+            },
+            "prototype": {
+                "template": "<%= paths.src.root %>/<%= paths.src.prototype.template %>",
+                "data": "<%= paths.src.root %>/<%= paths.src.prototype.data %>",
+                "webroot": "<%= paths.src.root %>/<%= paths.src.prototype.webroot %>"
+            },
+            "patternLibrary": {
+                "root": "<%= paths.src.root %>/<%= paths.src.patternLibrary.root %>",
+                "template": "<%= paths.src.root %>/<%= paths.src.patternLibrary.template %>"
+            }
+        },
+
+        "build": {
+            "root": "build",
+            "asset": {
+                "javascript": "build/asset/javascript",
+                "image": "build/asset/image",
+                "font": "build/asset/font",
+                "css": "build/asset/css"
+            },
+            "prototype": {
+                "template": "build/prototype",
+                "webroot": "build/prototype"
+            },
+            "patternLibrary": {
+                "root": "build/pattern_library"
+            },
+            "site": "build/prototype"
+        },
+
+        "buildUrl": {
+            "site": "/",
+            "css": "/asset/css",
+            "javascript": "/asset/javascript",
+            "image": "/asset/image",
+            "font": "/asset/font"
+        }
+    },
+    "ftpDeploy": {
+        "host": "",
+        "password": "",
+        "username": ""
+    },
+    "preferences": {
+        "autoprefix": {
+            "support": "last 2 versions, Explorer >= 8, Firefox >= 25"
+        },
+        "es2015": "es2015-loose"
+    }
+}

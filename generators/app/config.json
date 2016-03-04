@@ -1,0 +1,41 @@
+{
+  "paths": {
+
+    "src": {
+      "root": "src",
+      "asset": {
+        "javascript": "asset/image",
+        "image": "asset/image",
+        "font": "asset/font",
+        "scss": "asset/scss"
+      },
+      "prototype": {
+        "template": "prototype/template",
+        "data": "prototype/data",
+        "webroot": "prototype/webroot"
+      },
+      "patternLibrary": {
+        "root": "pattern_library",
+        "template": "pattern_library/template"
+      }
+    },
+
+    "build": {
+      "root": "build",
+      "asset": {
+        "javascript": "asset/javascript",
+        "image": "asset/image",
+        "font": "asset/font",
+        "css": "asset/css"
+      },
+      "prototype": {
+        "template": "prototype",
+        "webroot": "prototype"
+      },
+      "patternLibrary": {
+        "root": "pattern_library"
+      },
+      "site": "prototype"
+    }
+  }
+}

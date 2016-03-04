@@ -73,7 +73,8 @@ module.exports = yo.generators.Base.extend({
 		this.fs.copyTpl(
 			this.templatePath('_config.json'),
 			this.destinationPath('config.json'), {
-				paths: this.settings.paths
+				paths: this.settings.paths,
+				esVersion: this.props.es2015orLoose
 			}
 		);
 	},

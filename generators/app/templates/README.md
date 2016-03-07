@@ -1,9 +1,5 @@
-Incentro Front-end Incubator
-============================
-Front-end project for online development.
+# <%= name %>
 This project is based on the [Incentro Front-end Incubator](https://bitbucket.org/incentro-ondemand/frontend-incubator) project.
-
-
 
 Project deliverables
 --------------------
@@ -115,7 +111,7 @@ Some code changes require the build cache to be cleared. You can use the followi
 - `gulpfile.js` build process managed by gulp. Look into the [gulp documentation](https://github.com/gulpjs/gulp/blob/master/README.md#gulp-----) for configuration options.
 
 
-
+<% if (useDefaultConfig) { -%>
 Directory structure
 -------------------
 
@@ -131,7 +127,7 @@ Directory structure
 			* _static_ - sample files, normally managed by the cms
 	* _pattern_library_ -
 		* _template_ - kss handlebars template to render pattern library
-
+<% } -%>
 
 Troubleshooting
 ---------------

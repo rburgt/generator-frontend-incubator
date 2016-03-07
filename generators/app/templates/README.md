@@ -111,21 +111,25 @@ Some code changes require the build cache to be cleared. You can use the followi
 - `gulpfile.js` build process managed by gulp. Look into the [gulp documentation](https://github.com/gulpjs/gulp/blob/master/README.md#gulp-----) for configuration options.
 
 
-<% if (useDefaultConfig) { -%>
 Directory structure
 -------------------
 
 * _src_ - project source files, does not include vendor packages
 	* _asset_ - Front-end dependency needed in order to implement html
+<% if (useDefaultConfig) { -%>
 		* _font_ - fonts enabled in css
 		* _image_ - images used in layout
 		* _javascript_ - browserify enabled javascript (please look into bower.json for dependencies)
 		* _scss_ - styling files, structure based on DoCSSa
+<% } -%>
 	* _site_ - prototype site displaying
+<% if (useDefaultConfig) { -%>
 		* _template_ - templates needing to be rendered by swig
 		* _webroot_ - static files needing to be available in prototype
 			* _static_ - sample files, normally managed by the cms
+<% } -%>
 	* _pattern_library_ -
+<% if (useDefaultConfig) { -%>
 		* _template_ - kss handlebars template to render pattern library
 <% } -%>
 

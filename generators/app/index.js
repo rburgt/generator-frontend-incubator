@@ -27,7 +27,7 @@ module.exports = yo.generators.Base.extend({
 
 		// Have Yeoman greet the user.
 		this.log(yosay(
-			'Welcome to the ' + chalk.red('frontend-incubator') + ' generator!'
+			'Welcome to the ' + chalk.bold(chalk.green('frontend-incubator')) + ' generator!'
 		));
 
 		var prompts = [{
@@ -133,12 +133,12 @@ module.exports = yo.generators.Base.extend({
 		if (this.props.itcss) {
 			this.fs.write(stylePath + '/settings/_settings.scss', '// import all settings here');
 			this.fs.write(stylePath + '/tools/_tools.scss', '// import all tools here');
-			this.fs.write(stylePath + '/generic/_generic.scss', '// import all tools here');
-			this.fs.write(stylePath + '/base/_base.scss', '// import all tools here');
-			this.fs.write(stylePath + '/components/_components.scss', '// import all tools here');
-			this.fs.write(stylePath + '/theme/_theme.scss', '// import all tools here');
-			this.fs.write(stylePath + '/trumps/_trumps.scss', '// import all tools here');
-			this.fs.copy(this.templatePath(stylePath + '/itcss.scss'), this.destinationPath(stylePath + '/style.scss'))
+			this.fs.write(stylePath + '/generic/_generic.scss', '// import all generic styles here');
+			this.fs.write(stylePath + '/base/_base.scss', '// import all base styles here');
+			this.fs.write(stylePath + '/components/_components.scss', '// import all component styles here');
+			this.fs.write(stylePath + '/theme/_theme.scss', '// import all theme styles here');
+			this.fs.write(stylePath + '/trumps/_trumps.scss', '// import all trumps here');
+			this.fs.copy(this.templatePath('src/asset/scss/itcss.scss'), this.destinationPath(stylePath + '/style.scss'))
 		} else {
 			this.fs.write(stylePath + keep, keepText);
 		}
@@ -154,5 +154,10 @@ module.exports = yo.generators.Base.extend({
 
 	install: function () {
 		this.installDependencies({bower: false});
+	},
+	end: function () {
+		this.log(yosay(
+			'Thank you for using ' + chalk.bold(chalk.green('frontend-incubator')) + ' generator!'
+		));
 	}
 });

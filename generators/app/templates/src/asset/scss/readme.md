@@ -1,1 +1,0 @@
-# Style pattern library

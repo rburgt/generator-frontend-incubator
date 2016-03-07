@@ -1,5 +1,8 @@
-# generator-frontend-incubator [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Generator for the Incentro Frontend Incubator
+# generator-frontend-incubator 
+
+> Generate a project based on the Frontend Incubator
+ 
+![Frontend Incubator](./logo.png)
 
 ## Installation
 
@@ -23,11 +26,3 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 ## License
 
  © [Incentro](http://www.incentro.com)
-
-
-[npm-image]: https://badge.fury.io/js/generator-frontend-incubator.svg
-[npm-url]: https://npmjs.org/package/generator-frontend-incubator
-[travis-image]: https://travis-ci.org/Incentro/generator-frontend-incubator.svg?branch=master
-[travis-url]: https://travis-ci.org/Incentro/generator-frontend-incubator
-[daviddm-image]: https://david-dm.org/Incentro/generator-frontend-incubator.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/Incentro/generator-frontend-incubator

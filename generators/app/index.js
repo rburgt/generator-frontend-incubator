@@ -51,6 +51,11 @@ module.exports = yo.generators.Base.extend({
 				value: 'es2015'
 			}]
 		}, {
+			name: 'itcss',
+			message: 'Do you want to use ITCSS?',
+			default: true,
+			type: 'confirm'
+		}, {
 			name: 'useDefaultConfig',
 			message: 'Would you like to use the default incubator configuration?',
 			default: true,
@@ -118,12 +123,25 @@ module.exports = yo.generators.Base.extend({
 
 		var paths = this.settings.paths.src,
 			keep = '/.keep',
-			keepText = 'remove this file when you\'ve added content to this folder';
+			keepText = 'remove this file when you\'ve added content to this folder',
+			stylePath = paths.root + '/' + paths.asset.scss;
 
 		this.fs.write(paths.root + '/' + paths.asset.javascript + keep, keepText);
 		this.fs.write(paths.root + '/' + paths.asset.image + keep, keepText);
 		this.fs.write(paths.root + '/' + paths.asset.font + keep, keepText);
-		this.fs.write(paths.root + '/' + paths.asset.scss + keep, keepText);
+
+		if (this.props.itcss) {
+			this.fs.write(stylePath + '/settings/_settings.scss', '// import all settings here');
+			this.fs.write(stylePath + '/tools/_tools.scss', '// import all tools here');
+			this.fs.write(stylePath + '/generic/_generic.scss', '// import all tools here');
+			this.fs.write(stylePath + '/base/_base.scss', '// import all tools here');
+			this.fs.write(stylePath + '/components/_components.scss', '// import all tools here');
+			this.fs.write(stylePath + '/theme/_theme.scss', '// import all tools here');
+			this.fs.write(stylePath + '/trumps/_trumps.scss', '// import all tools here');
+			this.fs.copy(this.templatePath(stylePath + '/itcss.scss'), this.destinationPath(stylePath + '/style.scss'))
+		} else {
+			this.fs.write(stylePath + keep, keepText);
+		}
 
 		this.fs.write(paths.root + '/' + paths.prototype.template + keep, keepText);
 		this.fs.write(paths.root + '/' + paths.prototype.data + keep, keepText);

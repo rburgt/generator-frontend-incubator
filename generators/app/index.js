@@ -71,8 +71,8 @@ module.exports = yo.generators.Base.extend({
 				// @TODO: ask extra questions to the user here
 				//var that = this;
 				//this.prompt(extraPrompts, function (/*extraProps*/) {
-					//that.extraProps = extraProps;
-					done();
+				//that.extraProps = extraProps;
+				done();
 				//});
 			} else {
 				// To access props later use this.props.someOption;
@@ -100,7 +100,6 @@ module.exports = yo.generators.Base.extend({
 			}
 		);
 
-
 		this.fs.copyTpl(
 			this.templatePath('README.md'),
 			this.destinationPath('README.md'), {
@@ -109,11 +108,30 @@ module.exports = yo.generators.Base.extend({
 			}
 		);
 
-		//var simpleCopyFiles = ['.editorconfig', '.gitattributes', '.gitignore', '.jshintrc', 'gulpfile.js', 'tasks.json'];
-		//this.fs.copyTpl(
-		//	this.templatePath('.editorconfig'),
-		//	this.destinationPath('.editorconfig')
-		//);
+		var simpleCopyFiles = ['.editorconfig', '.gitattributes', '.gitignore', '.jshintrc', 'gulpfile.js', 'tasks.json'];
+		for (var i = 0; i < simpleCopyFiles.length; i++) {
+			this.fs.copyTpl(
+				this.templatePath(simpleCopyFiles[i]),
+				this.destinationPath(simpleCopyFiles[i])
+			);
+		}
+
+		var paths = this.settings.paths.src,
+			keep = '/.keep',
+			keepText = 'remove this file when you\'ve added content to this folder';
+
+		this.fs.write(paths.root + '/' + paths.asset.javascript + keep, keepText);
+		this.fs.write(paths.root + '/' + paths.asset.image + keep, keepText);
+		this.fs.write(paths.root + '/' + paths.asset.font + keep, keepText);
+		this.fs.write(paths.root + '/' + paths.asset.scss + keep, keepText);
+
+		this.fs.write(paths.root + '/' + paths.prototype.template + keep, keepText);
+		this.fs.write(paths.root + '/' + paths.prototype.data + keep, keepText);
+		this.fs.write(paths.root + '/' + paths.prototype.webroot + keep, keepText);
+
+		// @TODO issue 4
+		var KSSDir = paths.root + '/' + paths.patternLibrary.root;
+		this.bulkDirectory(KSSDir, KSSDir);
 	},
 
 	install: function () {

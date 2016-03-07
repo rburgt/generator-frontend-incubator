@@ -4,7 +4,7 @@
     "src": {
       "root": "src",
       "asset": {
-        "javascript": "asset/image",
+        "javascript": "asset/javascript",
         "image": "asset/image",
         "font": "asset/font",
         "scss": "asset/scss"

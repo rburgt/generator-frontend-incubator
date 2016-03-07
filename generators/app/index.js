@@ -40,7 +40,7 @@ module.exports = yo.generators.Base.extend({
 			default: '1.0.0'
 		}, {
 			name: 'es2015orLoose',
-			message: 'Which babel do you want to use?',
+			message: 'Which babel preset do you want to use?',
 			default: 'es2015-loose',
 			type: 'list',
 			choices: [{

@@ -6,14 +6,19 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-frontend-incubator using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) using npm. (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-frontend-incubator
 ```
 
-Then generate your new project:
+Second checkout this project in your favorite git tool and open your terminal in the root of the project from here you create a symlink to the generator. 
+
+```bash
+npm link
+```
+
+Then create a folder somewhere and inside this folder you can generate your new project:
 
 ```bash
 yo frontend-incubator

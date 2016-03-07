@@ -44,11 +44,20 @@ module.exports = yo.generators.Base.extend({
 			default: 'es2015-loose',
 			type: 'list',
 			choices: [{
-				name: 'es2015-loose',
-				value: 'es2015-loose'
+				name: 'es2015-loose'
 			}, {
-				name: 'es2015',
-				value: 'es2015'
+				name: 'es2015'
+			}]
+		}, {
+			name: 'dependencies',
+			message: 'Select the dependencies you want to install:',
+			type: 'checkbox',
+			choices: [{
+				name: 'fastdom'
+			}, {
+				name: 'fastclick'
+			}, {
+				name: 'jquery'
 			}]
 		}, {
 			name: 'itcss',
@@ -147,12 +156,18 @@ module.exports = yo.generators.Base.extend({
 		this.fs.write(paths.root + '/' + paths.prototype.data + keep, keepText);
 		this.fs.write(paths.root + '/' + paths.prototype.webroot + keep, keepText);
 
-		// @TODO issue 4
+		// @TODO [issue 4](https://bitbucket.org/incentro-ondemand/generator-frontend-incubator/issues/4/load-kss-template-from-server-instead-of)
 		var KSSDir = paths.root + '/' + paths.patternLibrary.root;
 		this.bulkDirectory(KSSDir, KSSDir);
 	},
 
 	install: function () {
+		// install extra dependencies:
+		var dependencies = this.props.dependencies;
+		if (dependencies && dependencies.length > 0) {
+			this.npmInstall(dependencies, { save: true });
+		}
+		// yeoman defaults with bower so turn it off here
 		this.installDependencies({bower: false});
 	},
 	end: function () {

@@ -43,10 +43,5 @@
   "scripts": {
     "deploy": "npm install; node ./node_modules/gulp/bin/gulp.js clean; node ./node_modules/gulp/bin/gulp.js build --minify"
   },
-  "dependencies": {
-    "fastclick": "^1.0.6",
-    "fastdom": "^1.0.1",
-    "jquery": "^2.2.1"
-  },
   "private": true
 }

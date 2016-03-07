@@ -64,35 +64,13 @@ module.exports = yo.generators.Base.extend({
 			message: 'Do you want to use ITCSS?',
 			default: true,
 			type: 'confirm'
-		}, {
-			name: 'useDefaultConfig',
-			message: 'Would you like to use the default incubator configuration?',
-			default: true,
-			type: 'confirm'
 		}];
 
-		//var extraPrompts = [{
-		//	name: 'sourceRoot',
-		//	message: 'What is the root of your sources?',
-		//	default: this.settings.paths.src.root
-		//}];
 
 		this.prompt(prompts, function (props) {
 			this.props = props;
+			done();
 
-			if (!props.useDefaultConfig) {
-				console.log('This feature is not yet implemented. Using default instead');
-				// @TODO: ask extra questions to the user here
-				//var that = this;
-				//this.prompt(extraPrompts, function (/*extraProps*/) {
-				//that.extraProps = extraProps;
-				done();
-				//});
-			} else {
-				// To access props later use this.props.someOption;
-
-				done();
-			}
 		}.bind(this));
 	},
 
@@ -117,8 +95,7 @@ module.exports = yo.generators.Base.extend({
 		this.fs.copyTpl(
 			this.templatePath('README.md'),
 			this.destinationPath('README.md'), {
-				name: this.props.projectName,
-				useDefaultConfig: this.props.useDefaultConfig
+				name: this.props.projectName
 			}
 		);
 
@@ -162,11 +139,19 @@ module.exports = yo.generators.Base.extend({
 	},
 
 	install: function () {
+		var esPreset = 'babel-preset-' + this.props.es2015orLoose;
+		var devDependencies = this.settings.dependencies;
+		if (esPreset) {
+			devDependencies.push(esPreset);
+		}
+		this.npmInstall(devDependencies, {saveDev: true});
+
 		// install extra dependencies:
 		var dependencies = this.props.dependencies;
 		if (dependencies && dependencies.length > 0) {
-			this.npmInstall(dependencies, { save: true });
+			this.npmInstall(dependencies, {save: true});
 		}
+
 		// yeoman defaults with bower so turn it off here
 		this.installDependencies({bower: false});
 	},

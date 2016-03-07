@@ -18,7 +18,6 @@
         "template": "pattern_library/template"
       }
     },
-
     "build": {
       "root": "build",
       "asset": {
@@ -36,7 +35,6 @@
       },
       "site": "prototype"
     },
-
     "buildUrl": {
       "site": "/",
       "css": "/asset/css",
@@ -44,5 +42,38 @@
       "image": "/asset/image",
       "font": "/asset/font"
     }
-  }
+  },
+  "dependencies": [
+    "babelify",
+    "browser-sync",
+    "browserify",
+    "gulp",
+    "gulp-autoprefixer",
+    "gulp-cache",
+    "gulp-cssnano",
+    "gulp-ftp",
+    "gulp-htmltidy",
+    "gulp-if",
+    "gulp-ignore",
+    "gulp-imagemin",
+    "gulp-insert",
+    "gulp-jshint",
+    "gulp-list",
+    "gulp-load-plugins",
+    "gulp-plumber",
+    "gulp-replace",
+    "gulp-sass",
+    "gulp-size",
+    "gulp-sourcemaps",
+    "gulp-swig",
+    "gulp-uglify",
+    "jshint",
+    "jshint-stylish",
+    "kss",
+    "nwmatcher",
+    "rimraf",
+    "run-sequence",
+    "through2",
+    "yargs"
+  ]
 }

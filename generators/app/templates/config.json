@@ -3,38 +3,38 @@
         "src": {
             "root": "<%= paths.src.root %>",
             "asset": {
-                "javascript": "<%= paths.src.root %>/<%= paths.src.asset.javascript %>",
-                "image": "<%= paths.src.root %>/<%= paths.src.asset.image %>",
-                "font": "<%= paths.src.root %>/<%= paths.src.asset.font %>",
-                "scss": "<%= paths.src.root %>/<%= paths.src.asset.scss %>"
+                "javascript": "<%= paths.src.asset.javascript %>",
+                "image": "<%= paths.src.asset.image %>",
+                "font": "<%= paths.src.asset.font %>",
+                "scss": "<%= paths.src.asset.scss %>"
             },
             "prototype": {
-                "template": "<%= paths.src.root %>/<%= paths.src.prototype.template %>",
-                "data": "<%= paths.src.root %>/<%= paths.src.prototype.data %>",
-                "webroot": "<%= paths.src.root %>/<%= paths.src.prototype.webroot %>"
+                "template": "<%= paths.src.prototype.template %>",
+                "data": "<%= paths.src.prototype.data %>",
+                "webroot": "<%= paths.src.prototype.webroot %>"
             },
             "patternLibrary": {
-                "root": "<%= paths.src.root %>/<%= paths.src.patternLibrary.root %>",
-                "template": "<%= paths.src.root %>/<%= paths.src.patternLibrary.template %>"
+                "root": "<%= paths.src.patternLibrary.root %>",
+                "template": "<%= paths.src.patternLibrary.template %>"
             }
         },
 
         "build": {
             "root": "<%= paths.build.root %>",
             "asset": {
-                "javascript": "<%= paths.build.root %>/<%= paths.build.asset.javascript %>",
-                "image": "<%= paths.build.root %>/<%= paths.build.asset.image %>",
-                "font": "<%= paths.build.root %>/<%= paths.build.asset.font %>",
-                "css": "<%= paths.build.root %>/<%= paths.build.asset.css %>"
+                "javascript": "<%= paths.build.asset.javascript %>",
+                "image": "<%= paths.build.asset.image %>",
+                "font": "<%= paths.build.asset.font %>",
+                "css": "<%= paths.build.asset.css %>"
             },
             "prototype": {
-                "template": "<%= paths.build.root %>/<%= paths.build.prototype.template %>",
-                "webroot": "<%= paths.build.root %>/<%= paths.build.prototype.webroot %>"
+                "template": "<%= paths.build.prototype.template %>",
+                "webroot": "<%= paths.build.prototype.webroot %>"
             },
             "patternLibrary": {
-                "root": "<%= paths.build.root %>/<%= paths.build.patternLibrary.root %>"
+                "root": "<%= paths.build.patternLibrary.root %>"
             },
-            "site": "<%= paths.build.root %>/<%= paths.build.site %>"
+            "site": "<%= paths.build.site %>"
         },
 
         "buildUrl": {

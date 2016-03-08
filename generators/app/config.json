@@ -3,37 +3,37 @@
     "src": {
       "root": "src",
       "asset": {
-        "javascript": "asset/javascript",
-        "image": "asset/image",
-        "font": "asset/font",
-        "scss": "asset/scss"
+        "javascript": "src/asset/javascript",
+        "image": "src/asset/image",
+        "font": "src/asset/font",
+        "scss": "src/asset/scss"
       },
       "prototype": {
-        "template": "prototype/template",
-        "data": "prototype/data",
-        "webroot": "prototype/webroot"
+        "template": "src/prototype/template",
+        "data": "src/prototype/data",
+        "webroot": "src/prototype/webroot"
       },
       "patternLibrary": {
-        "root": "pattern_library",
-        "template": "pattern_library/template"
+        "root": "src/pattern_library",
+        "template": "src/pattern_library/template"
       }
     },
     "build": {
       "root": "build",
       "asset": {
-        "javascript": "asset/javascript",
-        "image": "asset/image",
-        "font": "asset/font",
-        "css": "asset/css"
+        "javascript": "build/asset/javascript",
+        "image": "build/asset/image",
+        "font": "build/asset/font",
+        "css": "build/asset/css"
       },
       "prototype": {
-        "template": "prototype",
-        "webroot": "prototype"
+        "template": "build/prototype",
+        "webroot": "build/prototype"
       },
       "patternLibrary": {
-        "root": "pattern_library"
+        "root": "build/pattern_library"
       },
-      "site": "prototype"
+      "site": "build/prototype"
     },
     "buildUrl": {
       "site": "/",

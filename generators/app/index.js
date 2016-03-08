@@ -110,11 +110,11 @@ module.exports = yo.generators.Base.extend({
 		var paths = this.settings.paths.src,
 			keep = '/.keep',
 			keepText = 'remove this file when you\'ve added content to this folder',
-			stylePath = paths.root + '/' + paths.asset.scss;
+			stylePath = paths.asset.scss;
 
-		this.fs.write(paths.root + '/' + paths.asset.javascript + keep, keepText);
-		this.fs.write(paths.root + '/' + paths.asset.image + keep, keepText);
-		this.fs.write(paths.root + '/' + paths.asset.font + keep, keepText);
+		this.fs.write(paths.asset.javascript + keep, keepText);
+		this.fs.write(paths.asset.image + keep, keepText);
+		this.fs.write(paths.asset.font + keep, keepText);
 
 		if (this.props.itcss) {
 			this.fs.write(stylePath + '/settings/_settings.scss', '// import all settings here');
@@ -129,31 +129,31 @@ module.exports = yo.generators.Base.extend({
 			this.fs.write(stylePath + keep, keepText);
 		}
 
-		this.fs.write(paths.root + '/' + paths.prototype.template + keep, keepText);
-		this.fs.write(paths.root + '/' + paths.prototype.data + keep, keepText);
-		this.fs.write(paths.root + '/' + paths.prototype.webroot + keep, keepText);
+		this.fs.write(paths.prototype.template + keep, keepText);
+		this.fs.write(paths.prototype.data + keep, keepText);
+		this.fs.write(paths.prototype.webroot + keep, keepText);
 
 		// @TODO [issue 4](https://bitbucket.org/incentro-ondemand/generator-frontend-incubator/issues/4/load-kss-template-from-server-instead-of)
-		var KSSDir = paths.root + '/' + paths.patternLibrary.root;
+		var KSSDir = paths.patternLibrary.root;
 		this.bulkDirectory(KSSDir, KSSDir);
 	},
 
 	install: function () {
-		var esPreset = 'babel-preset-' + this.props.es2015orLoose;
-		var devDependencies = this.settings.dependencies;
-		if (esPreset) {
-			devDependencies.push(esPreset);
-		}
-		this.npmInstall(devDependencies, {saveDev: true});
-
-		// install extra dependencies:
-		var dependencies = this.props.dependencies;
-		if (dependencies && dependencies.length > 0) {
-			this.npmInstall(dependencies, {save: true});
-		}
-
-		// yeoman defaults with bower so turn it off here
-		this.installDependencies({bower: false});
+		//var esPreset = 'babel-preset-' + this.props.es2015orLoose;
+		//var devDependencies = this.settings.dependencies;
+		//if (esPreset) {
+		//	devDependencies.push(esPreset);
+		//}
+		//this.npmInstall(devDependencies, {saveDev: true});
+		//
+		//// install extra dependencies:
+		//var dependencies = this.props.dependencies;
+		//if (dependencies && dependencies.length > 0) {
+		//	this.npmInstall(dependencies, {save: true});
+		//}
+		//
+		//// yeoman defaults with bower so turn it off here
+		//this.installDependencies({bower: false});
 	},
 	end: function () {
 		this.log(yosay(

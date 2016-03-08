@@ -21,14 +21,26 @@ module.exports = yo.generators.Base.extend({
 	constructor: function (arg, options) {
 		yo.generators.Base.apply(this, arguments);
 		this.settings = config;
+
+		for (var i = 0; i < arguments.length; i = i + 1) {
+			if (arguments[i]['skipInstall'] || arguments[i]['skip-install']) {
+				this.log(yosay(
+					'Hi there, the ' + chalk.bold(chalk.green('frontend-incubator')) +
+					' heavily relies on the install step. I cannot guarantee any success when you continue. You can press ' +
+					chalk.yellow('\'ctrl + c\'') + ' to cancel. Proceed only when you really know what you\'re doing.'));
+				this.skipDefault = true;
+			}
+		}
 	},
 	prompting: function () {
 		var done = this.async();
 
-		// Have Yeoman greet the user.
-		this.log(yosay(
-			'Welcome to the ' + chalk.bold(chalk.green('frontend-incubator')) + ' generator!'
-		));
+		if (!this.skipDefault) {
+			// Have Yeoman greet the user.
+			this.log(yosay(
+				'Welcome to the ' + chalk.bold(chalk.green('frontend-incubator')) + ' generator!'
+			));
+		}
 
 		var prompts = [{
 			name: 'projectName',

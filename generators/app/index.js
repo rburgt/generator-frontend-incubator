@@ -52,14 +52,9 @@ module.exports = yo.generators.Base.extend({
 			default: '1.0.0'
 		}, {
 			name: 'es2015orLoose',
-			message: 'Which babel preset do you want to use?',
-			default: 'es2015-loose',
-			type: 'list',
-			choices: [{
-				name: 'es2015-loose'
-			}, {
-				name: 'es2015'
-			}]
+			message: 'Does Babel need to run in \'loose\' mode?',
+			default: true,
+			type: 'confirm'
 		}, {
 			name: 'dependencies',
 			message: 'Select the dependencies you want to install:',
@@ -186,11 +181,12 @@ module.exports = yo.generators.Base.extend({
 	},
 
 	install: function () {
-		var esPreset = 'babel-preset-' + this.props.es2015orLoose;
+		var useLoosePreset = this.props.es2015orLoose;
 		var devDependencies = this.settings.dependencies;
-		if (esPreset) {
-			devDependencies.push(esPreset);
+		if (useLoosePreset === true) {
+			devDependencies.push('babel-preset-es2015-loose');
 		}
+		devDependencies.push('babel-preset-es2015');
 		this.npmInstall(devDependencies, {saveDev: true});
 
 		// install extra dependencies:

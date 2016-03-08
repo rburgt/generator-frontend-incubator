@@ -1,0 +1,11 @@
+<% if (dependencies.indexOf('jquery') > -1) { -%>
+import $ from 'jquery';
+<% } -%>
+
+<% if (dependencies.indexOf('fastclick') > -1) { -%>
+import fastclick from 'fastclick';
+<% } -%>
+
+<% if (dependencies.indexOf('fastdom') > -1) { -%>
+import fastdom from 'fastdom';
+<% } -%>

@@ -154,7 +154,16 @@ module.exports = yo.generators.Base.extend({
 			keepText = 'remove this file when you\'ve added content to this folder',
 			stylePath = paths.asset.scss;
 
-		this.fs.write(paths.asset.javascript + keep, keepText);
+		if (this.props.dependencies.length > 0) {
+			this.fs.copyTpl(
+				this.templatePath(paths.asset.javascript + '/site.js.txt'),
+				this.destinationPath(paths.asset.javascript + '/site.js'),
+				{dependencies: this.props.dependencies}
+			);
+		} else {
+			this.fs.write(paths.asset.javascript + keep, keepText);
+		}
+
 		this.fs.write(paths.asset.image + keep, keepText);
 		this.fs.write(paths.asset.font + keep, keepText);
 

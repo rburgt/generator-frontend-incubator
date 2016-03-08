@@ -38,7 +38,7 @@ module.exports = yo.generators.Base.extend({
 		if (!this.skipDefault) {
 			// Have Yeoman greet the user.
 			this.log(yosay(
-				'Welcome to the ' + chalk.bold(chalk.green('frontend-incubator')) + ' generator!'
+				'Welcome to the ' + chalk.bold.green('frontend-incubator') + ' generator!'
 			));
 		}
 
@@ -60,13 +60,13 @@ module.exports = yo.generators.Base.extend({
 			message: 'Select the dependencies you want to install:',
 			type: 'checkbox',
 			choices: [{
-				name: 'fastdom - Eliminates layout thrashing by batching DOM read/write operations ',
-				value: 'fastdom'
-			}, {
-				name: 'fastclick - Polyfill to remove click delays on browsers with touch UIs',
+				name: 'fastclick' + chalk.grey(' - Polyfill to remove click delays on browsers with touch UIs'),
 				value: 'fastclick'
 			}, {
-				name: 'jQuery - A cross-platform JavaScript library designed to simplify the client-side scripting of HTML',
+				name: 'fastdom' + chalk.grey(' - Eliminates layout thrashing by batching DOM read/write operations '),
+				value: 'fastdom'
+			}, {
+				name: 'jQuery' + chalk.grey(' - A cross-platform JavaScript library designed to simplify the client-side scripting of HTML'),
 				value: 'jquery',
 				checked: true
 			}]
@@ -200,7 +200,7 @@ module.exports = yo.generators.Base.extend({
 	},
 	end: function () {
 		this.log(yosay(
-			'Thank you for using ' + chalk.bold(chalk.green('frontend-incubator')) + ' generator!'
+			'Thank you for using ' + chalk.bold.green('frontend-incubator') + ' generator!'
 		));
 	}
 });

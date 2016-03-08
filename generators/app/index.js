@@ -65,11 +65,15 @@ module.exports = yo.generators.Base.extend({
 			message: 'Select the dependencies you want to install:',
 			type: 'checkbox',
 			choices: [{
-				name: 'fastdom'
+				name: 'fastdom - Eliminates layout thrashing by batching DOM read/write operations ',
+				value: 'fastdom'
 			}, {
-				name: 'fastclick'
+				name: 'fastclick - Polyfill to remove click delays on browsers with touch UIs',
+				value: 'fastclick'
 			}, {
-				name: 'jquery'
+				name: 'jQuery - A cross-platform JavaScript library designed to simplify the client-side scripting of HTML',
+				value: 'jquery',
+				checked: true
 			}]
 		}, {
 			name: 'itcss',

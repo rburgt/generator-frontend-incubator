@@ -170,21 +170,21 @@ module.exports = yo.generators.Base.extend({
 	},
 
 	install: function () {
-		//var esPreset = 'babel-preset-' + this.props.es2015orLoose;
-		//var devDependencies = this.settings.dependencies;
-		//if (esPreset) {
-		//	devDependencies.push(esPreset);
-		//}
-		//this.npmInstall(devDependencies, {saveDev: true});
-		//
-		//// install extra dependencies:
-		//var dependencies = this.props.dependencies;
-		//if (dependencies && dependencies.length > 0) {
-		//	this.npmInstall(dependencies, {save: true});
-		//}
-		//
-		//// yeoman defaults with bower so turn it off here
-		//this.installDependencies({bower: false});
+		var esPreset = 'babel-preset-' + this.props.es2015orLoose;
+		var devDependencies = this.settings.dependencies;
+		if (esPreset) {
+			devDependencies.push(esPreset);
+		}
+		this.npmInstall(devDependencies, {saveDev: true});
+
+		// install extra dependencies:
+		var dependencies = this.props.dependencies;
+		if (dependencies && dependencies.length > 0) {
+			this.npmInstall(dependencies, {save: true});
+		}
+
+		// yeoman defaults with bower so turn it off here
+		this.installDependencies({bower: false});
 	},
 	end: function () {
 		this.log(yosay(

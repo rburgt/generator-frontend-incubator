@@ -46,9 +46,9 @@
         }
     },
     "ftpDeploy": {
-        "host": "",
-        "password": "",
-        "username": ""
+        "host": "<%= ftp.host %>",
+        "password": "<%= ftp.pass %>",
+        "username": "<%= ftp.user %>"
     },
     "preferences": {
         "autoprefix": {

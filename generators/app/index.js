@@ -64,6 +64,32 @@ module.exports = yo.generators.Base.extend({
 			message: 'Do you want to use ITCSS?',
 			default: true,
 			type: 'confirm'
+		}, {
+			name: 'configureFTP',
+			message: 'Would you like to configure FTP? (You can always do this later in the config.json)',
+			default: false,
+			type: 'confirm'
+		}, {
+			name: 'ftpHost',
+			message: 'FTP host',
+			type: 'input',
+			when: function (answers) {
+				return answers.configureFTP;
+			}
+		}, {
+			name: 'ftpUser',
+			message: 'FTP username',
+			type: 'input',
+			when: function (answers) {
+				return answers.configureFTP;
+			}
+		}, {
+			name: 'ftpPass',
+			message: 'FTP password',
+			type: 'password',
+			when: function (answers) {
+				return answers.configureFTP;
+			}
 		}];
 
 
@@ -88,7 +114,12 @@ module.exports = yo.generators.Base.extend({
 			this.templatePath('config.json'),
 			this.destinationPath('config.json'), {
 				paths: this.settings.paths,
-				esVersion: this.props.es2015orLoose
+				esVersion: this.props.es2015orLoose,
+				ftp: {
+					host: this.props.ftpHost || '',
+					user: this.props.ftpUser || '',
+					pass: this.props.ftpPass || ''
+				}
 			}
 		);
 

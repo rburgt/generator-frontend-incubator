@@ -154,15 +154,11 @@ module.exports = yo.generators.Base.extend({
 			keepText = 'remove this file when you\'ve added content to this folder',
 			stylePath = paths.asset.scss;
 
-		if (this.props.dependencies.length > 0) {
-			this.fs.copyTpl(
-				this.templatePath(paths.asset.javascript + '/site.js.txt'),
-				this.destinationPath(paths.asset.javascript + '/site.js'),
-				{dependencies: this.props.dependencies}
-			);
-		} else {
-			this.fs.write(paths.asset.javascript + keep, keepText);
-		}
+		this.fs.copyTpl(
+			this.templatePath(paths.asset.javascript + '/site.js.txt'),
+			this.destinationPath(paths.asset.javascript + '/site.js'),
+			{dependencies: this.props.dependencies}
+		);
 
 		this.fs.write(paths.asset.image + keep, keepText);
 		this.fs.write(paths.asset.font + keep, keepText);
@@ -180,7 +176,7 @@ module.exports = yo.generators.Base.extend({
 			this.fs.write(stylePath + keep, keepText);
 		}
 
-		this.fs.write(paths.prototype.template + keep, keepText);
+		this.bulkDirectory(paths.prototype.template, paths.prototype.template);
 		this.fs.write(paths.prototype.data + keep, keepText);
 		this.fs.write(paths.prototype.webroot + keep, keepText);
 

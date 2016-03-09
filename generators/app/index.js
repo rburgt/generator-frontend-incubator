@@ -125,7 +125,7 @@ module.exports = yo.generators.Base.extend({
 			this.templatePath('config.json'),
 			this.destinationPath('config.json'), {
 				paths: this.settings.paths,
-				esVersion: this.props.es2015orLoose,
+				esVersion: this.props.es2015orLoose ? 'es2015-loose' : 'es2015',
 				ftp: {
 					host: this.props.ftpHost || '',
 					user: this.props.ftpUser || '',
@@ -163,17 +163,18 @@ module.exports = yo.generators.Base.extend({
 		this.fs.write(paths.asset.image + keep, keepText);
 		this.fs.write(paths.asset.font + keep, keepText);
 
+
 		if (this.props.itcss) {
-			this.fs.write(stylePath + '/settings/_settings.scss', '// import all settings here');
-			this.fs.write(stylePath + '/tools/_tools.scss', '// import all tools here');
-			this.fs.write(stylePath + '/generic/_generic.scss', '// import all generic styles here');
-			this.fs.write(stylePath + '/base/_base.scss', '// import all base styles here');
-			this.fs.write(stylePath + '/components/_components.scss', '// import all component styles here');
-			this.fs.write(stylePath + '/theme/_theme.scss', '// import all theme styles here');
-			this.fs.write(stylePath + '/trumps/_trumps.scss', '// import all trumps here');
-			this.fs.copy(this.templatePath('src/asset/scss/itcss.scss'), this.destinationPath(stylePath + '/style.scss'))
+			this.fs.copy(this.templatePath('src/asset/scss/settings/_settings.scss'), this.destinationPath(stylePath + '/settings/_settings.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/tools/_tools.scss'), this.destinationPath(stylePath + '/tools/_tools.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/generic/_generic.scss'), this.destinationPath(stylePath + '/generic/_generic.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/base/_base.scss'), this.destinationPath(stylePath + '/base/_base.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/components/_components.scss'), this.destinationPath(stylePath + '/components/_components.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/theme/_theme.scss'), this.destinationPath(stylePath + '/theme/_theme.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/trumps/_trumps.scss'), this.destinationPath(stylePath + '/trumps/_trumps.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/itcss.scss'), this.destinationPath(stylePath + '/style.scss'));
 		} else {
-			this.fs.write(stylePath + keep, keepText);
+			this.fs.copy(this.templatePath('src/asset/scss/style.scss'), this.destinationPath(stylePath + '/style.scss'));
 		}
 
 		this.bulkDirectory(paths.prototype.template, paths.prototype.template);

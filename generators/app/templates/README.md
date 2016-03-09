@@ -141,3 +141,7 @@ Use the following steps to fix this:
 1. Open a command window with Administrator permissions
 2. Navigate to the installation directory of Node.js ( most likely `c:\Program Files\nodejs` or `c:\Program Files (x86)\nodejs` )
 3. Run `npm install npm`
+
+## Thanks to
+
+This project is kickstarted with the [Incentro Frontend Incubator](http://incentro.github.io/generator-frontend-incubator/)

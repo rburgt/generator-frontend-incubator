@@ -14,8 +14,8 @@
         "webroot": "src/prototype/webroot"
       },
       "patternLibrary": {
-        "root": "src/pattern_library",
-        "template": "src/pattern_library/template"
+        "root": "node_modules/frontend-incubator-kss-template/build",
+        "template": "node_modules/frontend-incubator-kss-template/build"
       }
     },
     "build": {
@@ -47,6 +47,7 @@
     "babelify",
     "browser-sync",
     "browserify",
+    "frontend-incubator-kss-template",
     "gulp",
     "gulp-autoprefixer",
     "gulp-cache",

@@ -184,8 +184,7 @@ gulp.task('compile:pattern_library', (callback) => {
             '--destination=' + config.path.build.patternLibrary.root,
             '--css=' + config.path.buildUrl.css + '/site.css',
             '--js=' + config.path.buildUrl.javascript + '/site.js',
-            '--template=' + config.path.src.patternLibrary.template,
-            '--homepage=readme.md'
+            '--template=' + config.path.src.patternLibrary.template
         ].join(' '),
         (error, stdout, stderr) => {
             if (error) {

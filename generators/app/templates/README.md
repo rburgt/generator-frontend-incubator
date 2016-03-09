@@ -36,7 +36,6 @@ Make sure the following dependencies are installed before using the build system
 
 Name      | Version | Description                                    | Quick install
 ----------|---------|------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SCSS Lint | 0.40.1  | Validates SCSS with check style                | After installing SASS, also install this with `gem install scss_lint`
 Node.js   | 5.3.x   | Used to automate builds of project             | **Windows:** download and install via the [Node.js](http://nodejs.org/) website. **Mac:** **1.** Install [Homebrew](http://brew.sh/) **2.** run `brew install node`
 Npm       | 3.5.x   | Manages Node.js dependencies                   | Automatically installed when installing Node.js. Use the command `npm update npm -g` to update version if needed. Check troubleshooting section if having troubles updating on a Windows machine.
 Gulp      | 3.x     | Build tool to define build tasks               | **1.** Install Npm and NodeJs **2.** run `npm install -g gulp` on commandline
@@ -142,6 +141,7 @@ Use the following steps to fix this:
 2. Navigate to the installation directory of Node.js ( most likely `c:\Program Files\nodejs` or `c:\Program Files (x86)\nodejs` )
 3. Run `npm install npm`
 
-## Thanks to
+Thanks to
+---------
 
 This project is kickstarted with the [Incentro Frontend Incubator](http://incentro.github.io/generator-frontend-incubator/)

@@ -1,15 +1,22 @@
 {
   "name": "generator-frontend-incubator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generator for the Incentro Frontend Incubator",
-  "homepage": "http://www.incentro.com",
-  "author": "Kasper Reijnders <kasper.reijnders@incentro.com>",
-  "files": [
-    "incubator"
-  ],
-  "main": "generators/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incentro/generator-frontend-incubator.git"
+  },
   "keywords": [
     "yeoman-generator"
+  ],
+  "author": "Incentro <frontend@incentro.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/incentro/generator-frontend-incubator/issues"
+  },
+  "homepage": "https://incentro.github.io/generator-frontend-incubator",
+  "files": [
+    "app"
   ],
   "dependencies": {
     "yeoman-generator": "^0.21.1",
@@ -29,16 +36,8 @@
     "path": "^0.12.7",
     "yeoman-assert": "^2.0.0"
   },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
-    }
-  },
-  "repository": "Incentro/generator-frontend-incubator",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
-  },
-  "license": "MIT"
+  }
 }

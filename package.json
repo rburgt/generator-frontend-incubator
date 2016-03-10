@@ -7,7 +7,7 @@
     "url": "git+https://github.com/incentro/generator-frontend-incubator.git"
   },
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator", "incentro", "frontend-incubator", "frontend", "incubator"
   ],
   "author": "Incentro <frontend@incentro.com>",
   "license": "MIT",

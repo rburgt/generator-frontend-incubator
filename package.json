@@ -1,13 +1,17 @@
 {
   "name": "generator-frontend-incubator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Generator for the Incentro Frontend Incubator",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/incentro/generator-frontend-incubator.git"
   },
   "keywords": [
-    "yeoman-generator", "incentro", "frontend-incubator", "frontend", "incubator"
+    "yeoman-generator",
+    "incentro",
+    "frontend-incubator",
+    "frontend",
+    "incubator"
   ],
   "author": "Incentro <frontend@incentro.com>",
   "license": "MIT",

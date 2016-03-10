@@ -114,7 +114,7 @@ module.exports = yo.generators.Base.extend({
 	writing: function () {
 
 		this.fs.copyTpl(
-			this.templatePath('package.json'),
+			this.templatePath('_package.json'),
 			this.destinationPath('package.json'), {
 				name: this.props.projectName,
 				version: this.props.projectVersion
@@ -122,7 +122,7 @@ module.exports = yo.generators.Base.extend({
 		);
 
 		this.fs.copyTpl(
-			this.templatePath('config.json'),
+			this.templatePath('_config.json'),
 			this.destinationPath('config.json'), {
 				paths: this.settings.paths,
 				esVersion: this.props.es2015orLoose ? 'es2015-loose' : 'es2015',
@@ -135,7 +135,7 @@ module.exports = yo.generators.Base.extend({
 		);
 
 		this.fs.copyTpl(
-			this.templatePath('README.md'),
+			this.templatePath('_README.md'),
 			this.destinationPath('README.md'), {
 				name: this.props.projectName
 			}
@@ -144,7 +144,7 @@ module.exports = yo.generators.Base.extend({
 		var simpleCopyFiles = ['.editorconfig', '.gitattributes', '.gitignore', '.jshintrc', 'gulpfile.js', 'tasks.json'];
 		for (var i = 0; i < simpleCopyFiles.length; i++) {
 			this.fs.copyTpl(
-				this.templatePath(simpleCopyFiles[i]),
+				this.templatePath('_' + simpleCopyFiles[i]),
 				this.destinationPath(simpleCopyFiles[i])
 			);
 		}

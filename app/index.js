@@ -172,9 +172,9 @@ module.exports = yo.generators.Base.extend({
 			this.fs.copy(this.templatePath('src/asset/scss/components/_components.scss'), this.destinationPath(stylePath + '/components/_components.scss'));
 			this.fs.copy(this.templatePath('src/asset/scss/theme/_theme.scss'), this.destinationPath(stylePath + '/theme/_theme.scss'));
 			this.fs.copy(this.templatePath('src/asset/scss/trumps/_trumps.scss'), this.destinationPath(stylePath + '/trumps/_trumps.scss'));
-			this.fs.copy(this.templatePath('src/asset/scss/itcss.scss'), this.destinationPath(stylePath + '/style.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/itcss.scss'), this.destinationPath(stylePath + '/site.scss'));
 		} else {
-			this.fs.copy(this.templatePath('src/asset/scss/style.scss'), this.destinationPath(stylePath + '/style.scss'));
+			this.fs.copy(this.templatePath('src/asset/scss/site.scss'), this.destinationPath(stylePath + '/site.scss'));
 		}
 
 		this.bulkDirectory(paths.prototype.template, paths.prototype.template);

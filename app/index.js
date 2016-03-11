@@ -180,10 +180,6 @@ module.exports = yo.generators.Base.extend({
 		this.bulkDirectory(paths.prototype.template, paths.prototype.template);
 		this.fs.write(paths.prototype.data + keep, keepText);
 		this.fs.write(paths.prototype.webroot + keep, keepText);
-
-		// @TODO [issue 4](https://bitbucket.org/incentro-ondemand/generator-frontend-incubator/issues/4/load-kss-template-from-server-instead-of)
-		var KSSDir = paths.patternLibrary.root;
-		this.bulkDirectory(KSSDir, KSSDir);
 	},
 
 	install: function () {

@@ -155,6 +155,8 @@ a:hover {
 	margin-bottom: 1rem;
 	font-weight: normal;
 	color: #f58233;
+	text-transform: lowercase;
+	font-family: Raleway, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;;
 }
 
 .main-content p {

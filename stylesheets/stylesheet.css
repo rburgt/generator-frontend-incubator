@@ -98,6 +98,8 @@ a:hover {
 .project-name {
 	margin-top: 0;
 	margin-bottom: 0.1rem;
+	text-transform: lowercase;
+	font-family: Raleway, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;;
 }
 
 @media screen and (min-width: 64em) {

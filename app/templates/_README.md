@@ -1,5 +1,5 @@
 # <%= name %>
-This project is based on the [Incentro Front-end Incubator](https://bitbucket.org/incentro-ondemand/frontend-incubator) project.
+This project is based on the [Incentro Front-end Incubator](https://incentro.github.com/generator-frontend-incubator) project.
 
 Project deliverables
 --------------------

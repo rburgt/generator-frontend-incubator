@@ -76,6 +76,11 @@ module.exports = yo.generators.Base.extend({
 			default: true,
 			type: 'confirm'
 		}, {
+			name: 'useSasslint',
+			message: 'Do you want to use sass-lint?',
+			default: true,
+			type: 'confirm'
+		}, {
 			name: 'configureFTP',
 			message: 'Would you like to configure FTP? (You can always do this later in the config.json)',
 			default: false,

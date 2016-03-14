@@ -142,10 +142,17 @@ module.exports = yo.generators.Base.extend({
 		);
 
 		var simpleCopyFiles = ['.editorconfig', '.gitattributes', '.gitignore', '.jshintrc', 'gulpfile.js', 'tasks.json'];
+		if (this.props.useSasslint) {
+			simpleCopyFiles.push('.sass-lint.yml');
+		}
+
 		for (var i = 0; i < simpleCopyFiles.length; i++) {
 			this.fs.copyTpl(
 				this.templatePath('_' + simpleCopyFiles[i]),
-				this.destinationPath(simpleCopyFiles[i])
+				this.destinationPath(simpleCopyFiles[i]),
+				{
+					useSasslint: this.props.useSasslint
+				}
 			);
 		}
 
@@ -193,6 +200,10 @@ module.exports = yo.generators.Base.extend({
 
 		// install extra dependencies:
 		var dependencies = this.props.dependencies;
+		if (this.props.useSasslint) {
+			dependencies.push('sass-lint');
+			dependencies.push('gulp-sass-lint');
+		}
 		if (dependencies && dependencies.length > 0) {
 			this.npmInstall(dependencies, {save: true});
 		}

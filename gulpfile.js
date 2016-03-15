@@ -26,7 +26,7 @@ gulp.task('test', ['pre-test'], function (cb) {
 			mochaErr = err;
 		})
 		.pipe($.istanbul.writeReports())
-		.on('end', function (cb) {
+		.on('end', function () {
 			if (mochaErr.message) {
 				console.error(mochaErr.message);
 			}

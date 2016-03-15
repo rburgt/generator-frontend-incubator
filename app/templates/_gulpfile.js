@@ -224,7 +224,7 @@ gulp.task('verify:css', function () {
 		.pipe($.plumber())
 		.pipe($.sassLint())
 		.pipe($.sassLint.format())
-		.pipe($.sassLint.failOnError())
+		.pipe($.sassLint.failOnError());
 <% } -%>
 });
 

@@ -16,9 +16,9 @@ Getting started
 
 1. This project uses [SASS](http://sass-lang.com/ "CSS With superpowers"),
    [Node.js](http://nodejs.org/, "Javascript development made awesome") and
-   [gulp](http://gulpjs.com/ "gulp.js, The stream build system") to automate development.
+   [Gulp](http://gulpjs.com/ "gulp.js, The stream build system") to automate development.
    Please take a look at the Build dependencies section in this readme to make sure the
-   correct versions are installed.
+   latest versions are installed.
 
 2. Install development dependencies
    `npm install`
@@ -36,8 +36,8 @@ Make sure the following dependencies are installed before using the build system
 
 Name      | Version | Description                                    | Quick install
 ----------|---------|------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Node.js   | 5.3.x   | Used to automate builds of project             | **Windows:** download and install via the [Node.js](http://nodejs.org/) website. **Mac:** **1.** Install [Homebrew](http://brew.sh/) **2.** run `brew install node`
-Npm       | 3.5.x   | Manages Node.js dependencies                   | Automatically installed when installing Node.js. Use the command `npm update npm -g` to update version if needed. Check troubleshooting section if having troubles updating on a Windows machine.
+Node.js   | 5.8.x   | Used to automate builds of project             | **Windows:** download and install via the [Node.js](http://nodejs.org/) website. **Mac:** **1.** Install [Homebrew](http://brew.sh/) **2.** run `brew install node`
+Npm       | 3.7.x   | Manages Node.js dependencies                   | Automatically installed when installing Node.js. Use the command `npm update npm -g` to update version if needed. Check troubleshooting section if having troubles updating on a Windows machine.
 Gulp      | 3.x     | Build tool to define build tasks               | **1.** Install Npm and NodeJs **2.** run `npm install -g gulp` on commandline
 
 Please look at the troubleshooting section if you are having trouble installing dependencies.
@@ -50,23 +50,38 @@ Coding conventions
 It is recommended to use the [google javascript style guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml) as a base for coding style.
 
 #### SCSS ( CSS )
-Currently the [docssa](http://docssa.info/) system is being implemented as a CSS architecture.
+<% if (itcss) { -%>
+Currently the [ITCSS](http://itcss.io/) system is being implemented as a CSS architecture. [Read all about ITCSS here](https://speakerdeck.com/dafed/managing-css-projects-with-itcss).
 
-Docssa uses BEM for class naming. BEM stands for Block, element, modifier.
+This means the css is ordered in:
 
- * Blocks are written in lowerCamelCase.
- * Elements are seperated from the parent block with 1 underscore and are also written in lowerCamelCase.
- * Modifiers are seperated from the block/element by 2 hyphen.
- * States (active, current etc.) are written in lowercase, always prefixed with: '_is_'.
-For extensive documentation, view the [BEM](https://en.bem.info/method/) or the [docssa](http://docssa.info/) website.
+ * **Settings** - Global variables, config switches.
+ * **Tools** - Default mixins and functions.
+ * **Generic** - Ground-zero styles (Normalize.css, resets, box-sizing).
+ * **Base** - Unclassed HTML elements (type selectors).
+ * **Objects** - Cosmetic-free design patterns.
+ * **Components** - Designed components, chunks of UI.
+ * **Trumps** - Helpers and overrides.
+
+<% } -%>
+
+BEM is used for class naming. BEM stands for Block, element, modifier.
+
+ * **Blocks** - are written in lowerCamelCase.
+ * **Elements** - are seperated from the parent block with 1 underscore and are also written in lowerCamelCase.
+ * **Modifiers** - are seperated from the block/element by 2 hyphen.
+ * **States** - (active, current etc.) are written in lowercase, always prefixed with: '_is_'.
+ 
+For extensive documentation, view the [BEM](https://en.bem.info/method/).
 
 Example:
+```
 .mainHeader
     .mainHeader_item
     .mainHeader_item--highlighted
     .mainHeader_item
     .mainHeader_item._is_active
-
+```
 
 
 Build commands
@@ -113,18 +128,18 @@ Some code changes require the build cache to be cleared. You can use the followi
 Directory structure
 -------------------
 
-* _src_ - project source files, does not include vendor packages
-	* _asset_ - Front-end dependency needed in order to implement html
-		* _font_ - fonts enabled in css
-		* _image_ - images used in layout
-		* _javascript_ - browserify enabled javascript (please look into bower.json for dependencies)
-		* _scss_ - styling files, structure based on DoCSSa
-	* _site_ - prototype site displaying
-		* _template_ - templates needing to be rendered by swig
-		* _webroot_ - static files needing to be available in prototype
-			* _static_ - sample files, normally managed by the cms
-	* _pattern_library_ -
-		* _template_ - kss handlebars template to render pattern library
+* **src** - project source files, does not include vendor packages
+	* **asset** - Front-end dependency needed in order to implement html
+		* **font** - fonts enabled in css
+		* **image** - images used in layout
+		* **javascript** - browserify enabled javascript (please look into bower.json for dependencies)
+		* **scss** - styling files, structure based on DoCSSa
+	* **site** - prototype site displaying
+		* **template** - templates needing to be rendered by swig
+		* **webroot** - static files needing to be available in prototype
+			* **static** - sample files, normally managed by the cms
+	* **pattern_library** -
+		* **template** - kss handlebars template to render pattern library
 
 Troubleshooting
 ---------------

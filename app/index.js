@@ -142,7 +142,8 @@ module.exports = yo.generators.Base.extend({
 		this.fs.copyTpl(
 			this.templatePath('_README.md'),
 			this.destinationPath('README.md'), {
-				name: this.props.projectName
+				name: this.props.projectName,
+				itcss: this.props.itcss
 			}
 		);
 

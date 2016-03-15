@@ -219,13 +219,13 @@ gulp.task('verify:js', () => {
 });
 
 gulp.task('verify:css', function () {
-//<% if (useSasslint) { -%>
+<% if (useSasslint) { -%>
 	gulp.src(config.path.src.asset.scss + '/**/*.scss')
 		.pipe($.plumber())
 		.pipe($.sassLint())
 		.pipe($.sassLint.format())
 		.pipe($.sassLint.failOnError())
-//<% } -%>
+<% } -%>
 });
 
 // Clean Output Directories

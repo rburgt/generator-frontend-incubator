@@ -76,6 +76,11 @@ module.exports = yo.generators.Base.extend({
 			default: true,
 			type: 'confirm'
 		}, {
+			name: 'useSasslint',
+			message: 'Do you want to use sass-lint?',
+			default: true,
+			type: 'confirm'
+		}, {
 			name: 'configureFTP',
 			message: 'Would you like to configure FTP? (You can always do this later in the config.json)',
 			default: false,
@@ -142,10 +147,17 @@ module.exports = yo.generators.Base.extend({
 		);
 
 		var simpleCopyFiles = ['.editorconfig', '.gitattributes', '.gitignore', '.jshintrc', 'gulpfile.js', 'tasks.json'];
+		if (this.props.useSasslint) {
+			simpleCopyFiles.push('.sass-lint.yml');
+		}
+
 		for (var i = 0; i < simpleCopyFiles.length; i++) {
 			this.fs.copyTpl(
 				this.templatePath('_' + simpleCopyFiles[i]),
-				this.destinationPath(simpleCopyFiles[i])
+				this.destinationPath(simpleCopyFiles[i]),
+				{
+					useSasslint: this.props.useSasslint
+				}
 			);
 		}
 
@@ -193,6 +205,10 @@ module.exports = yo.generators.Base.extend({
 
 		// install extra dependencies:
 		var dependencies = this.props.dependencies;
+		if (this.props.useSasslint) {
+			dependencies.push('sass-lint');
+			dependencies.push('gulp-sass-lint');
+		}
 		if (dependencies && dependencies.length > 0) {
 			this.npmInstall(dependencies, {save: true});
 		}

@@ -1,4 +1,4 @@
-# generator-frontend-incubator [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-frontend-incubator [![npm version](https://badge.fury.io/js/generator-frontend-incubator.svg)](https://badge.fury.io/js/generator-frontend-incubator) [![Dependency Status](https://david-dm.org/incentro/generator-frontend-incubator.svg)](https://david-dm.org/incentro/generator-frontend-incubator)
 
 > Generate a project based on the Frontend Incubator
  

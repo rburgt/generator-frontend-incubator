@@ -23,20 +23,19 @@
     "app"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.21.1",
+    "yeoman-generator": "^0.22.5",
     "chalk": "^1.0.0",
+    "mkdirp": "^0.5.1",
     "yosay": "^1.0.2"
   },
   "devDependencies": {
-    "eslint-config-xo-space": "^0.7.0",
     "gulp": "^3.9.0",
-    "gulp-eslint": "^1.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-istanbul": "^0.10.3",
+    "gulp-load-plugins": "^1.2.0",
     "gulp-mocha": "^2.0.0",
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
-    "mkdirp": "^0.5.1",
     "path": "^0.12.7",
     "yeoman-assert": "^2.0.0"
   },

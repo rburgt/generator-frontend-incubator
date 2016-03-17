@@ -1,13 +1,13 @@
 'use strict';
-var path = require('path');
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+let path = require('path');
+let gulp = require('gulp');
+let $ = require('gulp-load-plugins')();
 
-gulp.task('nsp', function (cb) {
+gulp.task('nsp', (cb) => {
 	$.nsp({package: path.resolve('package.json')}, cb);
 });
 
-gulp.task('pre-test', function () {
+gulp.task('pre-test', () => {
 	return gulp.src('generators/**/*.js')
 		.pipe($.excludeGitignore())
 		.pipe($.istanbul({
@@ -16,17 +16,17 @@ gulp.task('pre-test', function () {
 		.pipe($.istanbul.hookRequire());
 });
 
-gulp.task('test', ['pre-test'], function (cb) {
-	var mochaErr;
+gulp.task('test', ['pre-test'], (cb) => {
+	let mochaErr;
 
 	gulp.src('test/**/*.js')
 		.pipe($.plumber())
 		.pipe($.mocha({reporter: 'spec'}))
-		.on('error', function (err) {
+		.on('error', (err) => {
 			mochaErr = err;
 		})
 		.pipe($.istanbul.writeReports())
-		.on('end', function () {
+		.on('end', () => {
 			if (mochaErr.message) {
 				console.error(mochaErr.message);
 			}
@@ -34,7 +34,7 @@ gulp.task('test', ['pre-test'], function (cb) {
 		});
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
 	gulp.watch(['generators/**/*.js', 'test/**'], ['test']);
 });
 

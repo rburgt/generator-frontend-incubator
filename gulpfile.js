@@ -1,7 +1,7 @@
 'use strict';
-let path = require('path');
-let gulp = require('gulp');
-let $ = require('gulp-load-plugins')();
+const path = require('path');
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')();
 
 gulp.task('nsp', (cb) => {
 	$.nsp({package: path.resolve('package.json')}, cb);

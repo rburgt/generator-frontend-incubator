@@ -1,4 +1,5 @@
 # generator-frontend-incubator [![npm version](https://badge.fury.io/js/generator-frontend-incubator.svg)](https://badge.fury.io/js/generator-frontend-incubator) [![Dependency Status](https://david-dm.org/incentro/generator-frontend-incubator.svg)](https://david-dm.org/incentro/generator-frontend-incubator)
+[ ![Codeship Status for incentro/generator-frontend-incubator](https://codeship.com/projects/b47f6470-ce47-0133-a8be-56ac8db24476/status?branch=master)](https://codeship.com/projects/140860)
 
 > Generate a project based on the Frontend Incubator
  

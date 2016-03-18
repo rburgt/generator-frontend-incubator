@@ -2,10 +2,7 @@
   "name": "generator-frontend-incubator",
   "version": "0.2.0",
   "description": "Generator for the Incentro Frontend Incubator",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/incentro/generator-frontend-incubator.git"
-  },
+  "repository": "incentro/generator-frontend-incubator",
   "keywords": [
     "yeoman-generator",
     "incentro",
@@ -42,5 +39,10 @@
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
+  },
+  "engineStrict": true,
+  "engines": {
+    "npm": ">=3.7.3",
+    "node": ">=5.8.0"
   }
 }

@@ -2,12 +2,12 @@
 
 var path = require('path');
 var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
+var test = require('yeoman-test');
 
 describe('generator-frontend-incubator:app', function () {
 	describe('default settings', function () {
 		before(function (done) {
-			helpers.run(path.join(__dirname, '../app'))
+			test.run(path.join(__dirname, '../app'))
 				.withPrompts({projectName: 'testing-project'})
 				.on('end', done);
 		});
